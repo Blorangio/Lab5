@@ -14,8 +14,14 @@ void setup() {
   pinMode(D5, OUTPUT);
   Serial.begin(9600);
 }
-float volts;
+int volts;
+int mins = 10000;
+int maxs = 0;
 void loop() {
   volts = analogRead(A5);
   Serial.println(volts);
+  mins = min(mins, volts);
+  maxs = max(maxs, volts);
+  int outPut = map(volts, mins, maxs, 0, 255);
+  analogWrite(D5, outPut);
 }

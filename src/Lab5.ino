@@ -6,9 +6,13 @@ void setup() {
   Serial.begin(9600);
 }
 int volts;
+int mins = 10000;
+int maxs = 0;
 void loop() {
   volts = analogRead(A5);
   Serial.println(volts);
-  int outPut = map(volts, 1, 1500, 0, 255);
+  mins = min(mins, volts);
+  maxs = max(maxs, volts);
+  int outPut = map(volts, mins, maxs, 0, 255);
   analogWrite(D5, outPut);
 }
