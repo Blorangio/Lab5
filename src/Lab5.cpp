@@ -12,7 +12,10 @@ SYSTEM_THREAD(ENABLED);
 void setup() {
   pinMode(A5, INPUT);
   pinMode(D5, OUTPUT);
+  Serial.begin(9600);
 }
+float volts;
 void loop() {
-
+  volts = analogRead(A5);
+  Serial.println(volts);
 }
